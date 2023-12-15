@@ -1,0 +1,24 @@
+{
+    "name": "admin/multicurtest-account-administrations-service",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Admin\\MulticurtestAccountAdministrationsService\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Pantagruel74",
+            "email": "tostar74@mail.ru"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=7.4",
+        "webmozart/assert": "^1.11"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "*"
+    }
+}
