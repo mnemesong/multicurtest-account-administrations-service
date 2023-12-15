@@ -6,7 +6,11 @@ use Pantagruel74\MulticurtestAccountAdministrationsService\managers\AvailableCur
 
 class AvailableCurrencyMangerStub implements AvailableCurrencyMangerInterface
 {
-    private $curList = ["RUB", "USD", "EUR"];
+    const RUB = "RUB";
+    const USD = "USD";
+    const EUR = "EUR";
+
+    private $curList = [self::RUB, self::USD, self::EUR];
 
     public function isCurrenciesAvailable(array $curIds): bool
     {

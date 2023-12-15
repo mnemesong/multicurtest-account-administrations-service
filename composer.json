@@ -9,6 +9,9 @@
             "Pantagruel74\\MulticurtestAccountAdministrationsServiceTest\\": "test-unit/"
         }
     },
+    "scripts": {
+        "test:unit": "phpunit ./test-unit"
+    },
     "authors": [
         {
             "name": "Pantagruel74",

@@ -60,4 +60,10 @@ class BankAccountManagerStub implements BankAccountMangerInterface
             }
         }
     }
+
+    /* @return BankAccountRecStub[] */
+    public function getAllAccounts(): array
+    {
+        return $this->accs;
+    }
 }
