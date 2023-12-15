@@ -1,5 +1,5 @@
 {
-    "name": "admin/multicurtest-account-administrations-service",
+    "name": "pantagruel74/multicurtest-account-administrations-service",
     "type": "library",
     "license": "MIT",
     "autoload": {
