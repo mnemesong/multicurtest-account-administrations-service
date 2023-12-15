@@ -1,6 +1,6 @@
 <?php
 
-namespace Admin\MulticurtestAccountAdministrationsService\managers;
+namespace Pantagruel74\MulticurtestAccountAdministrationsService\managers;
 
 interface AvailableCurrencyMangerInterface
 {

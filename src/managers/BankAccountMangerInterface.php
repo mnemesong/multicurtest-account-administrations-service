@@ -1,8 +1,8 @@
 <?php
 
-namespace Admin\MulticurtestAccountAdministrationsService\managers;
+namespace Pantagruel74\MulticurtestAccountAdministrationsService\managers;
 
-use Admin\MulticurtestAccountAdministrationsService\records\BankAccountRecInterface;
+use Pantagruel74\MulticurtestAccountAdministrationsService\records\BankAccountRecInterface;
 
 interface BankAccountMangerInterface
 {
@@ -12,4 +12,9 @@ interface BankAccountMangerInterface
     ): BankAccountRecInterface;
 
     public function getAccount(string $accId): BankAccountRecInterface;
+
+    /* @param BankAccountRecInterface[] */
+    public function saveBankAccounts(
+        array $accounts
+    ): void;
 }

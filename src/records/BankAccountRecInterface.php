@@ -1,6 +1,6 @@
 <?php
 
-namespace Admin\MulticurtestAccountAdministrationsService\records;
+namespace Pantagruel74\MulticurtestAccountAdministrationsService\records;
 
 interface BankAccountRecInterface
 {
@@ -8,7 +8,6 @@ interface BankAccountRecInterface
     /* @return string[] */
     public function getCurrencies(): array;
     public function getMainCurrency(): string;
-    public function save(): void;
     public function addCurrencies(array $curs): self;
     public function withMainCurrency(string $cur): self;
 }

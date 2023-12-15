@@ -1,10 +1,10 @@
 <?php
 
-namespace Admin\MulticurtestAccountAdministrationsService;
+namespace Pantagruel74\MulticurtestAccountAdministrationsService;
 
-use Admin\MulticurtestAccountAdministrationsService\managers\AvailableCurrencyMangerInterface;
-use Admin\MulticurtestAccountAdministrationsService\managers\BankAccountMangerInterface;
-use Admin\MulticurtestAccountAdministrationsService\managers\CustomerManagerInterface;
+use Pantagruel74\MulticurtestAccountAdministrationsService\managers\AvailableCurrencyMangerInterface;
+use Pantagruel74\MulticurtestAccountAdministrationsService\managers\BankAccountMangerInterface;
+use Pantagruel74\MulticurtestAccountAdministrationsService\managers\CustomerManagerInterface;
 use Webmozart\Assert\Assert;
 
 final class AccountAdministrationsService
@@ -44,7 +44,7 @@ final class AccountAdministrationsService
         );
         $newBankAccount = $this->bankAccountManger
             ->createAccount($customerId, $mainCurrency);
-        $newBankAccount->save();
+        $this->bankAccountManger->saveBankAccounts([$newBankAccount]);
     }
 
     /* @param string[] $currencies */
@@ -65,7 +65,7 @@ final class AccountAdministrationsService
                 . " are not available"
         );
         $acc = $acc->addCurrencies($currsToAdd);
-        $acc->save();
+        $this->bankAccountManger->saveBankAccounts([$acc]);
     }
 
     public function setMainCurrencyToAccount(
@@ -81,6 +81,21 @@ final class AccountAdministrationsService
                 . " is not contains currency" .$curId
         );
         $acc = $acc->withMainCurrency($curId);
-        $acc->save();
+        $this->bankAccountManger->saveBankAccounts([$acc]);
+    }
+
+    /* @return string[] */
+    public function getListOfCurrenciesInAccount(
+        string $accountId
+    ): array {
+        $acc = $this->bankAccountManger->getAccount($accountId);
+        return $acc->getCurrencies();
+    }
+
+    public function getMainCurrencyOfAccount(
+        string $accountId
+    ): string {
+        $acc = $this->bankAccountManger->getAccount($accountId);
+        return $acc->getMainCurrency();
     }
 }

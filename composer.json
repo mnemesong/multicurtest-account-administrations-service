@@ -4,7 +4,9 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Admin\\MulticurtestAccountAdministrationsService\\": "src/"
+            "Pantagruel74\\MulticurtestAccountAdministrationsService\\": "src/",
+            "Pantagruel74\\MulticurtestAccountAdministrationsServiceStubs\\": "stubs/",
+            "Pantagruel74\\MulticurtestAccountAdministrationsServiceTest\\": "test-unit/"
         }
     },
     "authors": [
@@ -16,7 +18,8 @@
     "minimum-stability": "stable",
     "require": {
         "php": ">=7.4",
-        "webmozart/assert": "^1.11"
+        "webmozart/assert": "^1.11",
+        "ramsey/uuid": "^4.2"
     },
     "require-dev": {
         "phpunit/phpunit": "*"
