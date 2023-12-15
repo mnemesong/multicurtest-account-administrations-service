@@ -40,6 +40,7 @@ class BankAccountManagerStub implements BankAccountMangerInterface
             $this->accs,
             fn(BankAccountRecInterface $acc) => ($acc->getId() === $accId)
         );
+        Assert::count($accs, 1);
         return current($accs);
     }
 
