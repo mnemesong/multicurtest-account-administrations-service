@@ -4,38 +4,32 @@ namespace Pantagruel74\MulticurtestAccountAdministrationsService;
 
 use Pantagruel74\MulticurtestAccountAdministrationsService\managers\AvailableCurrencyMangerInterface;
 use Pantagruel74\MulticurtestAccountAdministrationsService\managers\BankAccountMangerInterface;
-use Pantagruel74\MulticurtestAccountAdministrationsService\managers\CustomerManagerInterface;
 use Webmozart\Assert\Assert;
 
 final class AccountAdministrationsService
 {
-    private CustomerManagerInterface $customerManager;
     private AvailableCurrencyMangerInterface $availableCurrencyManger;
     private BankAccountMangerInterface $bankAccountManger;
 
     /**
-     * @param CustomerManagerInterface $customerManager
      * @param AvailableCurrencyMangerInterface $availableCurrencyManger
      * @param BankAccountMangerInterface $bankAccountManger
      */
     public function __construct(
-        CustomerManagerInterface $customerManager,
         AvailableCurrencyMangerInterface $availableCurrencyManger,
         BankAccountMangerInterface $bankAccountManger
     ) {
-        $this->customerManager = $customerManager;
         $this->availableCurrencyManger = $availableCurrencyManger;
         $this->bankAccountManger = $bankAccountManger;
     }
 
+    /**
+     * @param string $mainCurrency
+     * @return void
+     */
     public function createAccountWithOneCurrency(
-        string $customerId,
         string $mainCurrency
     ): void {
-        Assert::true(
-            $this->customerManager->isCustomerExists($customerId),
-            "Customer " . $customerId . " is not exists"
-        );
         Assert::true(
             $this
             ->availableCurrencyManger
@@ -43,11 +37,15 @@ final class AccountAdministrationsService
             "Currency " . $mainCurrency . " is not available"
         );
         $newBankAccount = $this->bankAccountManger
-            ->createAccount($customerId, $mainCurrency);
+            ->createAccount($mainCurrency);
         $this->bankAccountManger->saveBankAccounts([$newBankAccount]);
     }
 
-    /* @param string[] $currencies */
+    /**
+     * @param string $accountId
+     * @param string[] $currencies
+     * @return void
+     */
     public function addCurrenciesToAccount(
         string $accountId,
         array $currencies
@@ -68,6 +66,11 @@ final class AccountAdministrationsService
         $this->bankAccountManger->saveBankAccounts([$acc]);
     }
 
+    /**
+     * @param string $accountId
+     * @param string $curId
+     * @return void
+     */
     public function setMainCurrencyToAccount(
         string $accountId,
         string $curId
@@ -84,7 +87,10 @@ final class AccountAdministrationsService
         $this->bankAccountManger->saveBankAccounts([$acc]);
     }
 
-    /* @return string[] */
+    /**
+     * @param string $accountId
+     * @return string[]
+     */
     public function getListOfCurrenciesInAccount(
         string $accountId
     ): array {
@@ -92,6 +98,10 @@ final class AccountAdministrationsService
         return $acc->getCurrencies();
     }
 
+    /**
+     * @param string $accountId
+     * @return string
+     */
     public function getMainCurrencyOfAccount(
         string $accountId
     ): string {

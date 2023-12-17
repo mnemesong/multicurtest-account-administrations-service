@@ -24,7 +24,6 @@ class BankAccountManagerStub implements BankAccountMangerInterface
     }
 
     public function createAccount(
-        string $customerId,
         string $mainCurrency
     ): BankAccountRecInterface {
         return new BankAccountRecStub(

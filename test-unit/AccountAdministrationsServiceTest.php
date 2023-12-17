@@ -5,7 +5,6 @@ namespace Pantagruel74\MulticurtestAccountAdministrationsServiceTest;
 use Pantagruel74\MulticurtestAccountAdministrationsService\AccountAdministrationsService;
 use Pantagruel74\MulticurtestAccountAdministrationsServiceStubs\managers\AvailableCurrencyMangerStub;
 use Pantagruel74\MulticurtestAccountAdministrationsServiceStubs\managers\BankAccountManagerStub;
-use Pantagruel74\MulticurtestAccountAdministrationsServiceStubs\managers\CustomerManagerStub;
 use Pantagruel74\MulticurtestAccountAdministrationsServiceStubs\records\BankAccountRecStub;
 use PHPUnit\Framework\TestCase;
 
@@ -14,16 +13,13 @@ class AccountAdministrationsServiceTest extends TestCase
     public function testCreateAccountValid()
     {
         $curManager = new AvailableCurrencyMangerStub();
-        $custManager = new CustomerManagerStub();
         $accManager = new BankAccountManagerStub([]);
         $service = new AccountAdministrationsService(
-            $custManager,
             $curManager,
             $accManager
         );
         $this->assertEmpty($accManager->getAllAccounts());
         $service->createAccountWithOneCurrency(
-            CustomerManagerStub::CUSTOMER_ID,
             AvailableCurrencyMangerStub::EUR
         );
         $accs = $accManager->getAllAccounts();
@@ -34,38 +30,17 @@ class AccountAdministrationsServiceTest extends TestCase
         );
     }
 
-    public function testCreateAccountInvalidCustomer()
-    {
-        $curManager = new AvailableCurrencyMangerStub();
-        $custManager = new CustomerManagerStub();
-        $accManager = new BankAccountManagerStub([]);
-        $service = new AccountAdministrationsService(
-            $custManager,
-            $curManager,
-            $accManager
-        );
-        $this->assertEmpty($accManager->getAllAccounts());
-        $this->expectException(\InvalidArgumentException::class);
-        $service->createAccountWithOneCurrency(
-            "ahds7yfvbasib89",
-            AvailableCurrencyMangerStub::EUR
-        );
-    }
-
     public function testCreateAccountInvalidCurrency()
     {
         $curManager = new AvailableCurrencyMangerStub();
-        $custManager = new CustomerManagerStub();
         $accManager = new BankAccountManagerStub([]);
         $service = new AccountAdministrationsService(
-            $custManager,
             $curManager,
             $accManager
         );
         $this->assertEmpty($accManager->getAllAccounts());
         $this->expectException(\InvalidArgumentException::class);
         $service->createAccountWithOneCurrency(
-            CustomerManagerStub::CUSTOMER_ID,
             "BUBL"
         );
     }
@@ -74,12 +49,10 @@ class AccountAdministrationsServiceTest extends TestCase
     {
         $accRecId = "38712984y918";
         $curManager = new AvailableCurrencyMangerStub();
-        $custManager = new CustomerManagerStub();
         $accManager = new BankAccountManagerStub([
             new BankAccountRecStub($accRecId, ["EUR"], "EUR")
         ]);
         $service = new AccountAdministrationsService(
-            $custManager,
             $curManager,
             $accManager
         );
@@ -96,12 +69,10 @@ class AccountAdministrationsServiceTest extends TestCase
     {
         $accRecId = "38712984y918";
         $curManager = new AvailableCurrencyMangerStub();
-        $custManager = new CustomerManagerStub();
         $accManager = new BankAccountManagerStub([
             new BankAccountRecStub($accRecId, ["EUR"], "EUR")
         ]);
         $service = new AccountAdministrationsService(
-            $custManager,
             $curManager,
             $accManager
         );
@@ -113,12 +84,10 @@ class AccountAdministrationsServiceTest extends TestCase
     {
         $accRecId = "38712984y918";
         $curManager = new AvailableCurrencyMangerStub();
-        $custManager = new CustomerManagerStub();
         $accManager = new BankAccountManagerStub([
             new BankAccountRecStub($accRecId, ["EUR"], "EUR")
         ]);
         $service = new AccountAdministrationsService(
-            $custManager,
             $curManager,
             $accManager
         );
@@ -130,12 +99,10 @@ class AccountAdministrationsServiceTest extends TestCase
     {
         $accRecId = "38712984y918";
         $curManager = new AvailableCurrencyMangerStub();
-        $custManager = new CustomerManagerStub();
         $accManager = new BankAccountManagerStub([
             new BankAccountRecStub($accRecId, ["EUR", "RUB"], "EUR")
         ]);
         $service = new AccountAdministrationsService(
-            $custManager,
             $curManager,
             $accManager
         );
@@ -151,12 +118,10 @@ class AccountAdministrationsServiceTest extends TestCase
     {
         $accRecId = "38712984y918";
         $curManager = new AvailableCurrencyMangerStub();
-        $custManager = new CustomerManagerStub();
         $accManager = new BankAccountManagerStub([
             new BankAccountRecStub($accRecId, ["EUR", "RUB"], "EUR")
         ]);
         $service = new AccountAdministrationsService(
-            $custManager,
             $curManager,
             $accManager
         );
@@ -168,12 +133,10 @@ class AccountAdministrationsServiceTest extends TestCase
     {
         $accRecId = "38712984y918";
         $curManager = new AvailableCurrencyMangerStub();
-        $custManager = new CustomerManagerStub();
         $accManager = new BankAccountManagerStub([
             new BankAccountRecStub($accRecId, ["EUR", "RUB"], "EUR")
         ]);
         $service = new AccountAdministrationsService(
-            $custManager,
             $curManager,
             $accManager
         );
@@ -185,12 +148,10 @@ class AccountAdministrationsServiceTest extends TestCase
     {
         $accRecId = "38712984y918";
         $curManager = new AvailableCurrencyMangerStub();
-        $custManager = new CustomerManagerStub();
         $accManager = new BankAccountManagerStub([
             new BankAccountRecStub($accRecId, ["EUR", "RUB"], "EUR")
         ]);
         $service = new AccountAdministrationsService(
-            $custManager,
             $curManager,
             $accManager
         );
@@ -203,12 +164,10 @@ class AccountAdministrationsServiceTest extends TestCase
     {
         $accRecId = "38712984y918";
         $curManager = new AvailableCurrencyMangerStub();
-        $custManager = new CustomerManagerStub();
         $accManager = new BankAccountManagerStub([
             new BankAccountRecStub($accRecId, ["EUR", "RUB"], "EUR")
         ]);
         $service = new AccountAdministrationsService(
-            $custManager,
             $curManager,
             $accManager
         );
@@ -220,12 +179,10 @@ class AccountAdministrationsServiceTest extends TestCase
     {
         $accRecId = "38712984y918";
         $curManager = new AvailableCurrencyMangerStub();
-        $custManager = new CustomerManagerStub();
         $accManager = new BankAccountManagerStub([
             new BankAccountRecStub($accRecId, ["EUR", "RUB"], "EUR")
         ]);
         $service = new AccountAdministrationsService(
-            $custManager,
             $curManager,
             $accManager
         );
@@ -237,12 +194,10 @@ class AccountAdministrationsServiceTest extends TestCase
     {
         $accRecId = "38712984y918";
         $curManager = new AvailableCurrencyMangerStub();
-        $custManager = new CustomerManagerStub();
         $accManager = new BankAccountManagerStub([
             new BankAccountRecStub($accRecId, ["EUR", "RUB"], "EUR")
         ]);
         $service = new AccountAdministrationsService(
-            $custManager,
             $curManager,
             $accManager
         );

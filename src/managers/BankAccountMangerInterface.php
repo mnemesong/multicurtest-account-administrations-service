@@ -7,7 +7,6 @@ use Pantagruel74\MulticurtestAccountAdministrationsService\records\BankAccountRe
 interface BankAccountMangerInterface
 {
     public function createAccount(
-        string $customerId,
         string $mainCurrency
     ): BankAccountRecInterface;
 
